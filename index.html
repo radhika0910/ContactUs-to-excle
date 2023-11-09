@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Contact us Responsive</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section class="section-bg" style="background-image: url('map.png');"  data-scroll-index="7">
+          <div class="overlay pt-100 pb-100 ">
+            <div class="container">
+               <div class="row">
+                    <div class="col-lg-6 d-flex align-items-center">
+                        <div class="contact-info">
+
+                            <h2 class="contact-title">Have Any Questions?</h2>
+                            <p>Lorem ipsum is a dummy text used to replace text in some areas just for the purpose of an example. It can be used in publishing and graphic design. The lorem ipsum text is usually a section of a Latin text by Cicero with words altered, added and removed to make it nonsensical.</p>
+                            <ul class="contact-info">
+                                <li>
+                                  <div class="info-left">
+                                      <i class="fas fa-mobile-alt"></i>
+                                  </div>
+                                  <div class="info-right">
+                                      <h4>+11223344550</h4>
+                                  </div>
+                                </li>
+                                <li>
+                                  <div class="info-left">
+                                      <i class="fas fa-at"></i>
+                                  </div>
+                                  <div class="info-right">
+                                      <h4>info@example.com</h4>
+                                  </div>
+                                </li>
+                                <li>
+                                  <div class="info-left">
+                                      <i class="fas fa-map-marker-alt"></i>
+                                  </div>
+                                  <div class="info-right">
+                                    <h4><a href="https://www.bing.com/maps?osid=c6af466e-97a5-449b-99e9-9c2dab80682e&cp=21.095191~78.97316&lvl=16&pi=0&imgid=96e7816b-4ad4-4ad9-9c7f-f0e529acfdda&v=2&sV=2&form=S00027" style="color: white;">1243 Stree New Chandigarh, INDIA</a></h4>
+                                  </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex align-items-center">
+                            <div class="contact-form">
+                                        <!--Contact Form-->
+                                        <form id='contact-form' method='POST' action='WEB_APP_URL'>
+                                            <div class="row">
+                                               <div class="col-md-12">
+                                                  <div class="form-group">
+                                                     <input type="text" name="name" class="form-control" id="first-name" placeholder="Enter Your Name *" required="required">
+                                                  </div>
+                                               </div>
+                                               <div class="col-md-12">
+                                                  <div class="form-group">
+                                                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email *" required="required">
+                                                  </div>
+                                               </div>
+
+                                               <div class="col-md-12">
+                                                  <div class="form-group">
+                                                       <textarea rows="4" name="message" class="form-control" id="description" placeholder="Enter Your Message *" required="required"></textarea>
+                                                  </div>
+                                               </div>
+                                                <div class="col-md-12">
+                                                    <!--contact button-->
+                                                    <button  class="btn-big btn btn-bg">
+                                                        Send Us <i class="fas fa-arrow-right"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                    </div>
+                    
+                    
+               </div>
+           </div>
+              </div>
+        </section>
+<!-- partial -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Select the form by its ID
+      const form = document.getElementById('contact-form');
+  
+      // Add an event listener for form submission
+      form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+  
+        // Create a JSON object with form data
+        const formData = {
+          name: form.querySelector('[name="name"]').value,
+          email: form.querySelector('[name="email"]').value,
+          message: form.querySelector('[name="message"]').value,
+        };
+  
+        // Send the data to your server
+        fetch('https://script.google.com/macros/s/AKfycbzuDkQBIswY1Vq2DymUG0f4Rf_DWp7sj95GgoCoQFFreEXpsrefIVsELCH-A9oaECbM5w/exec', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+          .then(response => response.text())
+          .then(data => {
+            // Handle the response if needed
+            console.log(data); // Log the response from the script
+          });
+      });
+    });
+  </script>
+  
+  
+</body>
+</html>
