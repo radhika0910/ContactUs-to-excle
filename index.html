@@ -46,6 +46,8 @@
                             </ul>
                         </div>
                     </div>
+
+                    
                     <div class="col-lg-6 d-flex align-items-center">
                             <div class="contact-form">
                                         <!--Contact Form-->
@@ -75,6 +77,11 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        <div id="success-message" style="display: none; color: green; margin-top: 10px;">
+                                            Form submitted successfully!
+                                          </div>
+                                            <div id="error-message" style="display: none; color: red; margin-top: 10px;">
+                                                Error submitting form!                                          
                                     </div>
                     </div>
                     
@@ -87,36 +94,36 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // Select the form by its ID
-      const form = document.getElementById('contact-form');
-  
-      // Add an event listener for form submission
-      form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent the default form submission
-  
-        // Create a JSON object with form data
-        const formData = {
-          name: form.querySelector('[name="name"]').value,
-          email: form.querySelector('[name="email"]').value,
-          message: form.querySelector('[name="message"]').value,
-        };
-  
-        // Send the data to your server
-        fetch('https://script.google.com/macros/s/AKfycbzuDkQBIswY1Vq2DymUG0f4Rf_DWp7sj95GgoCoQFFreEXpsrefIVsELCH-A9oaECbM5w/exec', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        })
-          .then(response => response.text())
-          .then(data => {
-            // Handle the response if needed
-            console.log(data); // Log the response from the script
-          });
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+      
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          const formData = {
+            name: form.querySelector('[name="name"]').value,
+            email: form.querySelector('[name="email"]').value,
+            message: form.querySelector('[name="message"]').value,
+          };
+      
+          fetch('https://script.google.com/macros/s/AKfycbzuDkQBIswY1Vq2DymUG0f4Rf_DWp7sj95GgoCoQFFreEXpsrefIVsELCH-A9oaECbM5w/exec', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+            .then(response => response.text())
+            .then(data => {
+              if (data === 'Success') {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+              } else {
+                console.log('Form submission failed');
+              }
+            });
+        });
       });
-    });
-  </script>
+     </script>
   
   
 </body>
